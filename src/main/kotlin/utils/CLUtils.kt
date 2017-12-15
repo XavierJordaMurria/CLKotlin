@@ -13,7 +13,6 @@ fun parseFileWithPath(filePath:String): MutableList<Pair<PokerHand,PokerHand>>
 
     val file = File(filePath)
     file.forEachLine {
-        println(it)
         pokerHands.add(parseLine(it))
     }
 
@@ -23,7 +22,5 @@ fun parseFileWithPath(filePath:String): MutableList<Pair<PokerHand,PokerHand>>
 private fun parseLine(line:String):Pair<PokerHand,PokerHand>
 {
     val separate1 = line.split(" ".toRegex())
-    println(separate1)
-
     return Pair(PokerHand(separate1.take(5).joinToString(" ")), PokerHand(separate1.takeLast(5).joinToString(" ")))
 }
