@@ -1,20 +1,15 @@
 package utils
+import data.PokerHand
 import java.io.File
 import java.io.InputStream
 
 fun readFileWithPath(filePath:String)
 {
-    val rest:MutableList<Pair<String,String>> = parseFileWithPath(filePath)
+    val rest:MutableList<Pair<PokerHand,PokerHand>> = parseFileWithPath(filePath)
 }
-fun parseFileWithPath(filePath:String): MutableList<Pair<String,String>>
+fun parseFileWithPath(filePath:String): MutableList<Pair<PokerHand,PokerHand>>
 {
-    val inputStream: InputStream = File(filePath).inputStream()
-    val lineList = mutableListOf<String>()
-
-    var pokerHands:MutableList<Pair<String,String>> = ArrayList()
-
-    inputStream.bufferedReader().useLines { lines -> lines.forEach { lineList.add(it)} }
-    lineList.forEach{println(">  " + it)}
+    var pokerHands:MutableList<Pair<PokerHand,PokerHand>> = ArrayList()
 
     val file = File(filePath)
     file.forEachLine {
@@ -25,10 +20,10 @@ fun parseFileWithPath(filePath:String): MutableList<Pair<String,String>>
     return pokerHands
 }
 
-private fun parseLine(line:String):Pair<String,String>
+private fun parseLine(line:String):Pair<PokerHand,PokerHand>
 {
     val separate1 = line.split(" ".toRegex())
     println(separate1)
 
-    return Pair(separate1.take(5).joinToString(" "), separate1.takeLast(5).joinToString(" "))
+    return Pair(PokerHand(separate1.take(5).joinToString(" ")), PokerHand(separate1.takeLast(5).joinToString(" ")))
 }

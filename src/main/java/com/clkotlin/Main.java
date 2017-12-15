@@ -11,7 +11,7 @@ public class Main
         CustomLog customLog = new CustomLog();
         customLog.logHelloWorld();
 
-        CLI cli;
+//        CLI cli;
 
         try
         {
